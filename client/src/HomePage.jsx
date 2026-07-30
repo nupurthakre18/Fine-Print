@@ -20,7 +20,7 @@ function HomePage() {
     setLoading(true);
 
     try {
-      const res = await fetch('http://localhost:5000/analyze', {
+        const res = await fetch('https://fine-print-g0xl.onrender.com/analyze', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text }),
@@ -44,7 +44,7 @@ function HomePage() {
     setLoading(true);
 
     try {
-      const fetchRes = await fetch('http://localhost:5000/fetch-url', {
+      const fetchRes = await fetch('https://fine-print-g0xl.onrender.com/fetch-url', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ url }),
