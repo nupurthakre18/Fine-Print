@@ -58,6 +58,7 @@ app.post('/analyze', async (req, res) => {
     );
 
     const data = await response.json();
+    console.log('GEMINI RAW RESPONSE:', JSON.stringify(data, null, 2));
     
     let raw = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
     raw = raw.trim().replace(/^```json\s*/i, '').replace(/^```\s*/, '').replace(/```\s*$/, '');
