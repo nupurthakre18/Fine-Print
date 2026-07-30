@@ -18,6 +18,7 @@ function ResultsPage() {
   const location = useLocation();
   const navigate = useNavigate();
   const [openFlags, setOpenFlags] = useState({});
+  const [openTerm, setOpenTerm] = useState(null);
 
   const result = location.state?.result;
 
@@ -213,16 +214,21 @@ function ResultsPage() {
             <div className="bg-white rounded-xl border border-[#E5E1D8] p-6">
               <p className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Legal jargon, highlighted</p>
               <div className="flex flex-wrap gap-2">
-                {result.legal_terms.map((t, i) => (
-                  <div key={i} className="group relative">
-                    <span className="text-xs bg-[#F3F1EA] text-[#1B4332] px-3 py-1.5 rounded-full cursor-help">
-                      {t.term}
-                    </span>
-                    <div className="absolute bottom-full left-0 mb-2 w-56 bg-[#1B4332] text-white text-xs p-3 rounded-lg shadow-lg z-10 hidden group-hover:block">
-                      {t.definition}
-                    </div>
-                  </div>
-                ))}
+               {result.legal_terms.map((t, i) => (
+               <div key={i} className="relative">
+               <button
+               onClick={() => setOpenTerm(openTerm === i ? null : i)}
+               className="text-xs bg-[#F3F1EA] text-[#1B4332] px-3 py-1.5 rounded-full cursor-pointer"
+               >
+               {t.term}
+              </button>
+              {openTerm === i && (
+              <div className="absolute bottom-full left-0 mb-2 w-56 bg-[#1B4332] text-white text-xs p-3 rounded-lg shadow-lg z-10">
+              {t.definition}
+              </div>
+               )}
+             </div>
+             ))}
               </div>
             </div>
           )}
