@@ -52,7 +52,7 @@ function HomePage() {
       const fetchData = await fetchRes.json();
       if (fetchData.error) throw new Error(fetchData.error);
 
-      const res = await fetch('http://localhost:5000/analyze', {
+       const res = await fetch('https://fine-print-g0xl.onrender.com/analyze', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text: fetchData.text }),
@@ -114,12 +114,15 @@ function HomePage() {
             />
           ) : (
             <input
-              type="text"
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
-              placeholder="https://example.com/terms"
-              className="w-full p-4 text-sm border border-[#E5E1D8] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1B4332]/20"
-            />
+            type="text"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            placeholder="https://example.com/terms"
+            autoCapitalize="off"
+            autoCorrect="off"
+            spellCheck="false"
+            className="w-full p-4 text-sm border border-[#E5E1D8] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1B4332]/20"
+           />
           )}
 
           <button
