@@ -36,7 +36,8 @@ function HomePage() {
   };
 
   const fetchAndAnalyze = async () => {
-    if (!url.trim().startsWith('http')) {
+    const cleanUrl = url.trim();
+    if (!cleanUrl.toLowerCase().startsWith('http')) {
       setError('Enter a valid URL starting with http:// or https://');
       return;
     }
@@ -47,7 +48,7 @@ function HomePage() {
       const fetchRes = await fetch('https://fine-print-g0xl.onrender.com/fetch-url', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url }),
+        body: JSON.stringify({ url: cleanUrl }),
       });
       const fetchData = await fetchRes.json();
       if (fetchData.error) throw new Error(fetchData.error);
